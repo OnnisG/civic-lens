@@ -73,8 +73,13 @@ body.light-mode {
   color: var(--truth-text);
 }
 body.dark-mode {
-  background-color: #2f2f2f; 
-  color: var(--watchdog-white);
+  background-color: #1f1f1f; 
+  color: #ffffff;
+}
+
+body.dark-mode .featured-news {
+  background: #2a2a2a;
+  color: #ffffff;
 }
 
 header{
@@ -339,6 +344,7 @@ input[type="tel"]{
   padding: 10px 10px;
   border: 2px solid rgba(0,0,0,0.2);
   background: #fff;
+  box-sizing: border-box;
 }
 
 legend{
@@ -350,14 +356,28 @@ legend{
 
 /* ///ADD/// medium styles 620px */
 @media (min-width: 620px) {
-  .menu {
+
+  #menu-toggle:checked ~ .menu {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  form{
+    grid-template-columns: 1fr 1fr;
+    column-gap: 18px;
+  }
+
+  fieldset{ grid-column: 1 / -1; }
+  button[type="submit"]{ grid-column: 1 / -1; }
+ 
+  .social-links{
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ///ADD/// large styles 920px */
-@media (min-width: 920px) {
 
+/* ///ADD/// large styles 920px */
+
+@media (min-width: 920px) {
   .menu-button {
     display: none;
   }
@@ -365,21 +385,56 @@ legend{
   .menu {
     display: grid;
     grid-auto-flow: column;
-    gap: 12px;
+    grid-auto-columns: max-content;
+    gap: 14px;
+    margin-top: 10px;
+    justify-content: start;
+  }
+
+  #breaking-news{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  #breaking-news h2{
+    grid-column: 1 / -1;
+  }
+
+  .breaking-card{
+    margin-top: 0;
+  }
+
+  .featured-grid{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+ 
+  fieldset{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 20px;
+  }
+
+  fieldset > div{
     margin-top: 8px;
   }
 
+  .social-links{
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 /* ///ADD/// x-large styles 1024px */
 @media (min-width: 1024px) {
 
   main {
-    max-width: 1050px;
+    max-width: 1200px;
   }
 
   h1 {
-   font-size: 42px;
+   font-size: 54px;
   }
 
 }
@@ -387,8 +442,16 @@ legend{
 /* ///ADD/// Interaction Queries for color scheme light and dark and motion preference */
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode):not(.dark-mode) {
-    background-color: var(--truth-text);
-    color: var(--watchdog-white);
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+  .featured-news{
+    background: #2a2a2a;
+    color: #ffffff;
+  }
+
+  .featured-news h3{
+    border-bottom-color: rgba(255,255,255,0.25);
   }
 }
 
@@ -406,9 +469,25 @@ legend{
   }
 }
 
-/* ///ADD///  Feature Query for :has() that checks if the #menu-toggle is checked */
 @supports (selector(:has(*))) {
 body:has(#menu-toggle:checked) .menu{
   display: grid;
-}
+ grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+ 
+  @media (min-width: 620px){
+    body:has(#menu-toggle:checked) .menu{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 920px){
+    body:has(#menu-toggle:checked) .menu{
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+    }
+  }
 }
