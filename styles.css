@@ -95,7 +95,46 @@ body.dark-mode {
   overflow: hidden;
 }
 
+#skip:focus{
+  position: static;
+  width: auto;
+  height: auto;
+}
+
 /* ///ADD/// Navigation Styles */
+
+.mobile-nav{
+  margin-top: 16px;
+}
+
+.menu-button{
+  display: inline-block;
+  padding: 10px 16px;
+  background: var(--blue-bulletin);
+  color: var(--watchdog-white);
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.menu{
+  display: none;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+menu a{
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--story-subtitle);
+  border-radius: 16px;
+}
+
+#menu-toggle:checked ~ .menu {
+  display: grid;
+}
 
 /* ///ADD/// Global Layout Styles */
 
