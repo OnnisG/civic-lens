@@ -85,6 +85,17 @@ body.dark-mode {
   cursor: pointer;
 }
 
+
+header, footer {
+  background-color: var(--blue-bulletin);
+  color: var(--watchdog-white);
+  padding: 24px 16px;
+}
+
+header {
+  position: relative;
+}
+
 /* ///ADD/// Skip Link Styles */
 .skip-link{
   position: absolute;
@@ -95,7 +106,7 @@ body.dark-mode {
   overflow: hidden;
 }
 
-#skip:focus{
+.skip-link:focus{
   position: static;
   width: auto;
   height: auto;
@@ -114,7 +125,7 @@ body.dark-mode {
   color: var(--watchdog-white);
   border-radius: 16px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .menu{
@@ -123,13 +134,16 @@ body.dark-mode {
   gap: 8px;
 }
 
-menu a{
+.menu a{
   display: block;
   padding: 10px 14px;
   text-decoration: none;
-  color: inherit;
-  border: 1px solid var(--story-subtitle);
-  border-radius: 16px;
+   background-color: var(--news-flash);
+  color: var(--watchdog-white);
+   font-weight: 700;
+  border: none;
+  border-radius: 0;
+  
 }
 
 #menu-toggle:checked ~ .menu {
@@ -140,7 +154,7 @@ menu a{
 main {
   max-width: 950px;
   margin: 0 auto;
-  padding: 64px 16px 48px;
+  padding: 32px 16px 48px;
 }
 
 form {
@@ -166,6 +180,14 @@ button[type="submit"] {
   background: var(--news-flash);
   color: var(--watchdog-white);
   cursor: pointer;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 12px;
+  box-shadow: var(--shadow);
 }
 
 /* ///ADD/// Global Text Styles */
@@ -247,7 +269,26 @@ blockquote.tagline {
 }
 
 /* ///ADD/// Interaction Queries for color scheme light and dark and motion preference */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) {
+    background-color: var(--truth-text);
+    color: var(--watchdog-white);
+  }
+}
 
+@media (prefers-color-scheme: light) {
+  body:not(.light-mode):not(.dark-mode) {
+    background-color: var(--watchdog-white);
+    color: var(--truth-text);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
 
 /* ///ADD///  Feature Query for :has() that checks if the #menu-toggle is checked */
 @supports (selector(:has(*))) {
